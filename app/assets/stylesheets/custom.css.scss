@@ -101,3 +101,28 @@ footer ul li {
   float: left;
   margin-left: 10px;
 }
+
+ /*movie show page*/
+.movie_image{
+  float: left;
+  margin-right: 40px;
+}
+
+/* Movies index */
+
+.movies{
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+.description{
+  padding-left: 40px;
+}

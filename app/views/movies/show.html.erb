@@ -1,0 +1,6 @@
+<% provide(:title, "#{@movie.title} (#{@movie.year})" )%>
+
+<div class="container">
+<h1><%= @movie.title %> (<%= @movie.year %>)</h1>
+<%= image_of @movie, 120 %><b>Desription: </b><p><%= @movie.description %></p>
+</div>
