@@ -1,8 +1,16 @@
+require 'Sidekiq/Web'
+
 MoviesLocator::Application.routes.draw do
 
   resources :movies
   root 'pages#home'
   get "pages/home"
+
+  Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
+    [user, password] == ["admin", "sidekiq"]
+  end
+
+  mount Sidekiq::Web, at: '/sidekiq'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

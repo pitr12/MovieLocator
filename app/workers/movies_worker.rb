@@ -1,9 +1,10 @@
-class MoviesWorker
-  include Sidekiq::Worker
-  require 'open-uri'
-  require 'nokogiri'
+include Sidekiq::Worker
+require 'open-uri'
+require 'nokogiri'
 
-  def perform
+class MoviesWorker
+
+  def perform(id)
     (6..10).each do |id|
       html = open("http://www.imdb.com/title/tt#{id}/")
 
