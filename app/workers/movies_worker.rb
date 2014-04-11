@@ -5,7 +5,7 @@ require 'nokogiri'
 class MoviesWorker
 
   def perform
-    (101..110).each do |id|
+    (1..110).each do |id|
       html = open("http://www.imdb.com/title/tt#{id}/")
 
       page = Nokogiri::HTML(html)

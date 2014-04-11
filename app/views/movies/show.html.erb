@@ -3,4 +3,13 @@
 <div class="container">
 <h1><%= @movie.title %> (<%= @movie.year %>)</h1>
 <%= image_of @movie, 120 %><b>Desription: </b><p><%= @movie.description %></p>
+  <b>Locations: </b>
+    <ul class="li_desc">
+    <% @movie.locations.each do |location|%>
+        <li><%= location.name %></li>
+          <% if (!location.description == "") %>
+            <li><%= location.description %></li>
+          <% end %>
+     <% end %>
+    </ul>
 </div>
