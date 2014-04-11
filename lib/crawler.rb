@@ -2,8 +2,8 @@ require 'open-uri'
 require 'nokogiri'
 
 
-(1..20).each do |id|
-  html = open("http://www.imdb.com/title/tt#{id}/")
+#(1..10).each do |id|
+  html = open("http://www.imdb.com/title/tt0088247/")
 
   page = Nokogiri::HTML(html)
 
@@ -20,7 +20,22 @@ require 'nokogiri'
     description = " No description found"
   end
   puts "Description: " + description[1..-1]
-end
+
+  #get movie locations
+  puts "Locations: "
+  html = open("http://www.imdb.com/title/tt1/locations")
+  page = Nokogiri::HTML(html)
+
+  page.css("div[class='soda odd']").each do |div|
+    name = div.search('dt')
+    puts name.text.strip
+
+    descr = div.search('dd')
+    puts descr.text.strip
+    puts " "
+  end
+
+#end
 
   #doc.search('.itemprop span').each do |title|
     #tds = tr.search('td')
