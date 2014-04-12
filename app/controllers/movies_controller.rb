@@ -11,6 +11,8 @@ class MoviesController < ApplicationController
       marker.lat location.latitude
       marker.lng location.longitude
       marker.infowindow location.description
+      marker.title location.name
+      marker.json({ name: location.name })
     end
   end
 

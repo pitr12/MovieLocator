@@ -5,25 +5,49 @@
 <%= image_of @movie, 120 %><b>Desription: </b><p><%= @movie.description %></p>
   <% if (@movie.locations.present?) %>
       <b>Locations: </b>
-        <ul class="li_desc">
-        <% @movie.locations.each do |location|%>
-            <li><%= location.name %></li>
-         <% end %>
-        </ul>
 
+      <div id='markers_list'>
+      </div>
       <div style='width: 800px; margin-left: 75px'>
         <div id="map" style='width: 800px; height: 400px;'></div>
       </div>
 
       <script type="text/javascript">
-          handler = Gmaps.build('Google');
-          handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-              markers = handler.addMarkers(<%=raw @hash.to_json %>);
-              handler.bounds.extendWith(markers);
-              handler.fitMapToBounds();
-              handler.getMap().setZoom(13);
-          });
+          $(document).ready(function(){
+              var raw_markers   = <%=raw @hash.to_json %>;
+              var gmaps_markers;
+
+              function createSidebarLi(json) {
+                  return ("<li><a>" + json.name + "<\/a></li>");
+              };
+
+              function bindLiToMarker($li, marker){
+                  $li.click(function(){
+                      handler.getMap().setZoom(14);
+                      marker.setMap(handler.getMap()); //because clusterer removes map property from marker
+                      marker.panTo();
+                      google.maps.event.trigger(marker.getServiceObject(), 'click');
+                  });
+              };
+
+              function createSidebar(){
+                  for (var i=0;i<raw_markers.length;i++){
+                      var $li = $( createSidebarLi(raw_markers[i]) );
+                      $li.appendTo($('#markers_list'));
+                      bindLiToMarker($li, gmaps_markers[i]);
+                  }
+              };
+
+              handler = Gmaps.build('Google');
+              handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+                  gmaps_markers = handler.addMarkers(raw_markers);
+                  handler.bounds.extendWith(gmaps_markers);
+                  handler.fitMapToBounds();
+                  createSidebar();
+              });
+          })
       </script>
+
   <% end %>
 
 </div>
