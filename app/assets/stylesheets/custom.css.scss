@@ -112,6 +112,13 @@ footer ul li {
   margin-left: 165px;
 }
 
+#map img {
+  max-width: none;
+}
+#map label {
+  width: auto; display:inline;
+}
+
 /* Movies index */
 
 .movies{

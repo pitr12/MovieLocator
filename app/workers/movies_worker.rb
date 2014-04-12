@@ -5,7 +5,7 @@ require 'nokogiri'
 class MoviesWorker
 
   def perform
-    (1..110).each do |id|
+    (1..100).each do |id|
       html = open("http://www.imdb.com/title/tt#{id}/")
 
       page = Nokogiri::HTML(html)
@@ -21,12 +21,6 @@ class MoviesWorker
         description = " No description found"
       end
       description = description[1..-1]
-
-      #if(Movie.last.present?)
-      #  mid = Movie.last.id + 1
-      #else
-      #  mid = 1
-      #end
 
       movie = Movie.create(title: title, description: description, year: year )
 

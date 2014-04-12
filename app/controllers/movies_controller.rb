@@ -6,6 +6,12 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @locations = @movie.locations
+    @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
+      marker.lat location.latitude
+      marker.lng location.longitude
+      marker.infowindow location.description
+    end
   end
 
 end

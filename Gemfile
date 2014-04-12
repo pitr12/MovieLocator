@@ -64,3 +64,5 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
+gem 'geocoder'
+gem 'gmaps4rails'
