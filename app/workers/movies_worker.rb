@@ -27,7 +27,11 @@ class MoviesWorker
 
       div_image = page.css("div.image")
       image = div_image.search('img')
-      image = image[0]["src"]
+      if (image.empty?)
+        image = "Missing"
+      else
+        image = image[0]["src"]
+      end
 
       movie = Movie.new(title: title, description: description, year: year , img: image)
       if(movie.save)
@@ -55,6 +59,7 @@ class MoviesWorker
             else
               location = Location.new(name: name, description: descr )
               if(location.save)
+                sleep 5
                 movie.localizations.create(location: location)
               end
             end

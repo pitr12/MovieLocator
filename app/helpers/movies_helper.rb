@@ -11,7 +11,7 @@ module MoviesHelper
   end
 
   def checkURI(movie)
-    if(movie.img.nil?)
+    if(movie.img == "Missing")
       return false
     else return true
     end
