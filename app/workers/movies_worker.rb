@@ -4,20 +4,19 @@ require 'nokogiri'
 
 class MoviesWorker
 
-  def perform
-    (1..100).each do |id|
+  def perform(id)
       html = open("http://www.imdb.com/title/tt#{id}/")
 
       page = Nokogiri::HTML(html)
 
       #get movie title and year
-      head = page.css('h1').search('span')
-      title =  head[0].text
-      year =  head[1].text[1..-2]
-      if(head.size == 3)
-        title =  head[2].text.split('"')[1]
+      title = page.css('h1 span[itemprop=name]')[-1].text
+      if(title.include?("(original title)"))
+        title.sub! '(original title)', ''
+        title = title.strip[1..-2]
       end
-      puts "Title: " + title
+
+      year = page.css('h1 span.nobr')[0].text[1..-2]
 
       #get movie description
       description = page.css("p[itemprop='description']").text
@@ -26,36 +25,40 @@ class MoviesWorker
       end
       description = description[1..-1]
 
-      movie = Movie.create(title: title, description: description, year: year )
+      div_image = page.css("div.image")
+      image = div_image.search('img')
+      image = image[0]["src"]
 
-      #get movie locations
-      html = open("http://www.imdb.com/title/tt#{id}/locations")
-      page = Nokogiri::HTML(html)
+      movie = Movie.new(title: title, description: description, year: year , img: image)
+      if(movie.save)
 
-      page.css("div.soda").each do |div|
-        name = div.search('dt')
-        name = name.text.strip
+        #get movie locations
+        html = open("http://www.imdb.com/title/tt#{id}/locations")
+        page = Nokogiri::HTML(html)
 
-        descr = div.search('dd')
-        descr = descr.text.strip
-        if(descr == "")
-          descr = "No description available"
-        else
-          descr =  descr[1..-2]
+        page.css("div.soda").each do |div|
+          name = div.search('dt')
+          name = name.text.strip
+
+          descr = div.search('dd')
+          descr = descr.text.strip
+          if(descr == "")
+            descr = "No description available"
+          else
+            descr =  descr[1..-2]
+          end
+
+
+            location = Location.where(name: name)[0]
+            if(!location.nil?)
+              movie.localizations.create(location: location)
+            else
+              location = Location.new(name: name, description: descr )
+              if(location.save)
+                movie.localizations.create(location: location)
+              end
+            end
         end
-        puts "Location: " + name
-        puts "Description: " + descr
-
-        location = Location.where(name: name)[0]
-
-        if(!location.present?)
-          location = Location.create(name: name, description: descr )
-        end
-
-        movie.localizations.create(location: location)
       end
-
-    end
   end
-
 end

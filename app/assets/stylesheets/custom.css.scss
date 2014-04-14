@@ -116,8 +116,19 @@ footer ul li {
 #map img {
   max-width: none;
 }
+
+#map_container{
+  width: 800px;
+  margin-left: 75px;
+  margin-top: 20px;
+}
+
 #map label {
   width: auto; display:inline;
+}
+
+#movie_head{
+  min-height: 180px;
 }
 
 /* Movies index */
@@ -137,4 +148,10 @@ footer ul li {
 
 .description{
   padding-left: 90px;
+}
+
+.MyGradientClass{
+    background-image: linear-gradient(#F1F1F1, rgba(236, 236, 236, 0.77));
+    background-repeat: no-repeat;
+    background-color: rgba(236, 236, 236, 0.77);
 }

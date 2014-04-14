@@ -2,13 +2,15 @@
 
 <div class="container">
 <h1><%= @movie.title %> (<%= @movie.year %>)</h1>
-<%= image_of @movie, 120 %><b>Desription: </b><p><%= @movie.description %></p>
-  <% if (@movie.locations.present?) %>
+  <div id="movie_head">
+    <%= image_of @movie, 120 %><b>Desription: </b><p><%= @movie.description %></p
+    <% if (@movie.locations.present?) %>
       <b>Locations: </b>
 
       <div id='markers_list'>
       </div>
-      <div style='width: 800px; margin-left: 75px'>
+  </div>
+      <div id="map_container">
         <div id="map" style='width: 800px; height: 400px;'></div>
       </div>
 
