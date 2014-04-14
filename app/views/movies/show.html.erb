@@ -3,7 +3,7 @@
 <div class="container">
 <h1><%= @movie.title %> (<%= @movie.year %>)</h1>
   <div id="movie_head">
-    <%= image_of @movie, 120 %><b>Desription: </b><p><%= @movie.description %></p
+    <%= image_of @movie, 120 %><b>Desription: </b><p><%= @movie.description %></p>
     <% if (@movie.locations.present?) %>
       <b>Locations: </b>
 
@@ -29,6 +29,9 @@
                       marker.setMap(handler.getMap()); //because clusterer removes map property from marker
                       marker.panTo();
                       google.maps.event.trigger(marker.getServiceObject(), 'click');
+                      $('html, body').animate({
+                          scrollTop: $("#map").offset().top
+                      }, 500);
                   });
               };
 
