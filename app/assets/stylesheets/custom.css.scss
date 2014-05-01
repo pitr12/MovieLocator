@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 85px;
 }
 
 section {
@@ -24,6 +24,12 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
+}
+
+#header_container{
+  margin-left: 15px;
+  margin-top: 25px;
+  height: 60px;
 }
 
 /* typography */
@@ -113,6 +119,10 @@ footer ul li {
   margin-bottom: 20px;
 }
 
+#map_home img {
+  max-width: none;
+}
+
 #map img {
   max-width: none;
 }
@@ -121,6 +131,18 @@ footer ul li {
   width: 800px;
   margin-left: 75px;
   margin-top: 20px;
+}
+
+#map_home{
+  width: 100%;
+  position: absolute;
+  min-height: 89%;
+  height: auto !important;
+  height: 89%;
+}
+
+#map_home label {
+  width: auto; display:inline;
 }
 
 #map label {
