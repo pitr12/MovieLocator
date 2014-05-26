@@ -2,9 +2,9 @@ class MoviesController < ApplicationController
 
   def index
     if params[:query].present?
-      @movies = Movie.search(params[:query], page: params[:page])
+      @movies = Movie.search(params[:query], page: params[:page], order: {_score: :desc} )
     else
-      @movies = Movie.all.page params[:page]
+      @movies = (Movie.all.page params[:page]).order('title ASC')
     end
 
 
@@ -21,6 +21,10 @@ class MoviesController < ApplicationController
       marker.title location.name
       marker.json({ name: location.name })
     end
+  end
+
+  def autocomplete
+    render json: Movie.search(params[:query], autocomplete: true, limit: 10).map(&:title)
   end
 
 end

@@ -2,7 +2,12 @@ require 'Sidekiq/Web'
 
 MoviesLocator::Application.routes.draw do
 
-  resources :movies
+  resources :movies do
+    collection do
+      get :autocomplete
+    end
+  end
+
   root 'pages#home'
   get "pages/home"
 

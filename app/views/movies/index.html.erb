@@ -3,11 +3,17 @@
 <h1>List of all Movies</h1>
 
   <%= form_tag movies_path, class: "form-inline", method: :get do %>
-      <%= text_field_tag :query, params[:query], class: "form-control" %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-      <% if params[:query].present? %>
-        <%= link_to "clear", movies_path %>
-      <% end %>
+      <div class="input-group input-group-lg" >
+        <% if params[:query].present? %>
+            <div class="input-group-btn">
+              <%= link_to "clear", movies_path, class: "btn btn-default" %>
+            </div>
+        <% end %>
+            <%= text_field_tag :query, params[:query], class: "form-control", id: "movie_search", autocomplete: "off" %>
+            <div class=input-group-btn">
+              <%= submit_tag "Search", class: "btn btn-primary" %>
+            </div>
+      </div>
   <% end %>
 
 <%= page_entries_info %>

@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  searchkick
+  searchkick autocomplete: ['title']
   validates :title, presence: true
   validates :description, presence: true
   validates :year, presence: true
