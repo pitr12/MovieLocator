@@ -2,12 +2,28 @@
   <div class="navbar-inner">
     <div id="header_container">
       <%= link_to "Movies Locator", root_path, id: "logo" %>
+
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Movies", movies_path %></li>
         </ul>
       </nav>
+
+      <%= form_tag movies_path, class: "form-inline", method: :get do %>
+          <div class="input-group input-group-lg" >
+            <%= text_field_tag :query, params[:query], class: "form-control", id: "movie_search", autocomplete: "off" %>
+          </div>
+            <div class="input-group-btn">
+              <%= submit_tag "Search", class: "btn btn-primary" %>
+            </div>
+          <% if params[:query].present? %>
+              <div class="input-group-btn">
+                <%= link_to "clear", movies_path, class: "btn btn-default" %>
+              </div>
+          <% end %>
+      <% end %>
+
     </div>
   </div>
 </header>

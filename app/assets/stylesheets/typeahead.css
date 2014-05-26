@@ -77,7 +77,7 @@
 }
 .input-group .twitter-typeahead .tt-query,
 .input-group .twitter-typeahead .tt-hint {
-    height: 34px;
+    height: 24px;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 1.428571429;
@@ -92,7 +92,7 @@
 }
 .input-group.input-group-sm .tt-query,
 .input-group.input-group-sm .tt-hint {
-    height: 30px;
+    height: 20px;
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
@@ -107,7 +107,7 @@
 }
 .input-group.input-group-lg .tt-query,
 .input-group.input-group-lg .tt-hint {
-    height: 45px;
+    height: 25px;
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.33;

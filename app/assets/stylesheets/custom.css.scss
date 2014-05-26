@@ -29,7 +29,7 @@ textarea {
 #header_container{
   margin-left: 15px;
   margin-top: 25px;
-  height: 60px;
+  height: 70px;
 }
 
 /* typography */
@@ -176,4 +176,33 @@ footer ul li {
     background-image: linear-gradient(#F1F1F1, rgba(236, 236, 236, 0.77));
     background-repeat: no-repeat;
     background-color: rgba(236, 236, 236, 0.77);
+}
+
+.form-inline{
+  width: 100%;
+}
+
+.input-group{
+  width: 50%;
+  float: left;
+  margin-left: 120px;
+  margin-right: 50px;
+}
+
+.input-group-btn{
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.btn-primary{
+  font-size: 20px;
+}
+
+.nav{
+  font-size: 17px;
+}
+
+.container{
+  margin-top: 15px;
 }
