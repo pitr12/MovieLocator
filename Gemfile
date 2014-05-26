@@ -66,3 +66,4 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'searchkick'

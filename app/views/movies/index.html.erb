@@ -2,8 +2,16 @@
 <div class="container">
 <h1>List of all Movies</h1>
 
+  <%= form_tag movies_path, class: "form-inline", method: :get do %>
+      <%= text_field_tag :query, params[:query], class: "form-control" %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% if params[:query].present? %>
+        <%= link_to "clear", movies_path %>
+      <% end %>
+  <% end %>
+
 <%= page_entries_info %>
-<%= will_paginate %>
+  <%= will_paginate @movies%>
 
 <ul class="movies">
   <% @movies.each do |movie| %>
@@ -14,6 +22,6 @@
       </li>
   <% end %>
 </ul>
-<%= will_paginate %>
+  <%= will_paginate @movies %>
   <%= render 'layouts/footer' %>
 </div>

@@ -1,7 +1,14 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.paginate(page: params[:page], :per_page => 20).order('title ASC')
+    if params[:query].present?
+      @movies = Movie.search(params[:query], page: params[:page])
+    else
+      @movies = Movie.all.page params[:page]
+    end
+
+
+    #@movies = Movie.paginate(page: params[:page], :per_page => 20).order('title ASC')
   end
 
   def show
