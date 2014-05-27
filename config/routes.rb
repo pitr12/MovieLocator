@@ -11,6 +11,8 @@ MoviesLocator::Application.routes.draw do
   root 'pages#home'
   get "pages/home"
 
+  get 'can_redirect' => 'movies#check_url', as: 'can_redirect'
+
   Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
     [user, password] == ["admin", "sidekiq"]
   end

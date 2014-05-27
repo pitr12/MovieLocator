@@ -27,4 +27,20 @@ class MoviesController < ApplicationController
     render json: Movie.search(params[:query], autocomplete: true, limit: 10).map(&:title)
   end
 
+  def check_url
+    movies = Movie.where(:title => params[:query])
+    if movies.size > 0
+      respond_to do |format|
+        format.html { render json: {:response => (movies.size == 1), :url => "/movies/#{movies[0].id}"}  }
+        format.json { render json: {:response => (movies.size == 1), :url => "/movies/#{movies[0].id}"}  }
+      end
+    else
+      respond_to do |format|
+        format.html { render json: {:response => false, :url => ""} }
+        format.json { render json: {:response => false, :url => ""} }
+
+      end
+    end
+  end
+
 end

@@ -15,7 +15,7 @@
             <%= text_field_tag :query, params[:query], class: "form-control", id: "movie_search", autocomplete: "off" %>
           </div>
             <div class="input-group-btn">
-              <%= submit_tag "Search", class: "btn btn-primary" %>
+              <%= submit_tag "Search", class: "btn btn-primary", id: "srchbtn"%>
             </div>
           <% if params[:query].present? %>
               <div class="input-group-btn">
@@ -23,6 +23,10 @@
               </div>
           <% end %>
       <% end %>
+
+      <script type="text/javascript">
+          redirect_search();
+      </script>
 
     </div>
   </div>
