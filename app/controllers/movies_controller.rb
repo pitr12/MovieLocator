@@ -24,7 +24,9 @@ class MoviesController < ApplicationController
   end
 
   def autocomplete
-    render json: Movie.search(params[:query], autocomplete: true, limit: 10).map(&:title)
+    #render json: Movie.search(params[:query], autocomplete: true, limit: 10).map(&:title)
+    @movies = Movie.search(params[:query], autocomplete: true, limit: 10)
+    render json: @movies.map{|movie| {:name => movie.title, :year =>  movie.year} }
   end
 
   def check_url
