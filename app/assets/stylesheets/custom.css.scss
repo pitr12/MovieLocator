@@ -39,9 +39,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2em;
+  color: #afafaf;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  padding-top: 15px;
   text-align: center;
 }
 
@@ -112,6 +114,7 @@ footer ul li {
 .movie_image{
   float: left;
   margin-right: 40px;
+  max-height: 170px;
 }
 
 #markers_list{
@@ -127,18 +130,20 @@ footer ul li {
   max-width: none;
 }
 
-#map_container{
-  width: 800px;
-  margin-left: 75px;
-  margin-top: 20px;
+#map {
+  width: 100%;
+  position: absolute;
+  min-height: 56%;
+  height: auto !important;
+  height: 56%;
 }
 
 #map_home{
   width: 100%;
   position: absolute;
-  min-height: 89%;
+  min-height: 88%;
   height: auto !important;
-  height: 89%;
+  height: 88%;
   margin-top: 11px;
 }
 
@@ -150,8 +155,28 @@ footer ul li {
   width: auto; display:inline;
 }
 
-#movie_head{
-  min-height: 180px;
+.movie_head{
+  min-height: 235px;
+  margin-top: 11px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  background-color: #1b1b1b;
+  background-image: -moz-linear-gradient(top, #111111, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#111111), to(#222222));
+  background-image: -webkit-linear-gradient(top, #111111, #222222);
+  background-image: -o-linear-gradient(top, #111111, #222222);
+  background-image: linear-gradient(to bottom, #111111, #222222);
+  background-repeat: repeat-x;
+  border-color: #111111;
+}
+
+.small_title{
+  color: #afafaf;
+  font-weight: bold;
+}
+
+.descr{
+  color: #7c7c7c;
 }
 
 /* Movies index */
