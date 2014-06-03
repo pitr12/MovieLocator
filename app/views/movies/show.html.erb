@@ -1,19 +1,25 @@
 <% provide(:title, "#{@movie.title} (#{@movie.year})" )%>
 
+  <div id="showhide"><a id="toggle">Show/hide movie info</a></div>
   <div class="movie_head">
     <h1><%= @movie.title %> (<%= @movie.year %>)</h1>
 
     <%= image_of @movie, 120 %><div class="small_title">Desription:</div><p class="descr"><%= @movie.description %></p>
     <% if (@movie.locations.present?) %>
-    <div class="small_title">Locations:</div>
-      <div id='markers_list'></div>
+        <div class="small_title">Locations:</div>
+          <div id='markers_list'></div>
   </div>
 
-  <div id="map"></div>
+      <div id="map"></div>
 
-  <script type="text/javascript">
-    showmap(<%=raw @hash.to_json %>);
-  </script>
+      <script type="text/javascript">
+        showmap(<%=raw @hash.to_json %>);
+      </script>
+     <% end %>
 
-  <% end %>
+    <script type="text/javascript">
+        $('#toggle').click(function(){
+            $('.movie_head').toggle();
+        });
+    </script>
  

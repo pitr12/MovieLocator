@@ -133,9 +133,9 @@ footer ul li {
 #map {
   width: 100%;
   position: absolute;
-  min-height: 56%;
+  min-height: 86%;
   height: auto !important;
-  height: 56%;
+  height: 86%;
 }
 
 #map_home{
@@ -157,7 +157,6 @@ footer ul li {
 
 .movie_head{
   min-height: 235px;
-  margin-top: 11px;
   padding-bottom: 5px;
   padding-left: 20px;
   background-color: #1b1b1b;
@@ -168,6 +167,22 @@ footer ul li {
   background-image: linear-gradient(to bottom, #111111, #222222);
   background-repeat: repeat-x;
   border-color: #111111;
+  margin-top: -10px;
+}
+
+#showhide{
+  margin-top: 11px;
+  min-height: 12px;
+  padding-right: 20px;
+  background-color: #1b1b1b;
+  background-image: -moz-linear-gradient(top, #111111, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#111111), to(#222222));
+  background-image: -webkit-linear-gradient(top, #111111, #222222);
+  background-image: -o-linear-gradient(top, #111111, #222222);
+  background-image: linear-gradient(to bottom, #111111, #222222);
+  background-repeat: repeat-x;
+  border-color: #111111;
+  text-align: right;
 }
 
 .small_title{
