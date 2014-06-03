@@ -1,6 +1,9 @@
 <% provide(:title, "#{@movie.title} (#{@movie.year})" )%>
 
-  <div id="showhide"><a id="toggle">Show/hide movie info</a></div>
+  <div id="showhide">
+    <div class="showhide_l"><a id="totop">Go to Top</a></div>
+    <div class="showhide_r"><a id="toggle">Show/hide movie info</a></div>
+  </div>
   <div class="movie_head">
     <h1><%= @movie.title %> (<%= @movie.year %>)</h1>
 
@@ -20,6 +23,11 @@
     <script type="text/javascript">
         $('#toggle').click(function(){
             $('.movie_head').toggle();
+        });
+
+        $('#totop').click(function(){
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            return false;
         });
     </script>
  
