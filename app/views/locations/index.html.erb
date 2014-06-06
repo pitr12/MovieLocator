@@ -1,0 +1,17 @@
+<% provide(:title, 'Locations')%>
+<div class="container">
+  <h1>List of all Locations</h1>
+
+  <%= page_entries_info %>
+  <%= will_paginate @locations%>
+
+  <ul class="movies">
+    <% @locations.each do |location| %>
+        <li>
+          <p><%= link_to location.name, location %> (<%= location.movies.count %> movies)</p>
+        </li>
+    <% end %>
+  </ul>
+  <%= will_paginate @locations %>
+  <%= render 'layouts/footer' %>
+</div>

@@ -8,6 +8,8 @@ MoviesLocator::Application.routes.draw do
     end
   end
 
+  resources :locations
+
   root 'pages#home'
   get "pages/home"
 
