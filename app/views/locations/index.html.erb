@@ -5,10 +5,10 @@
   <%= page_entries_info %>
   <%= will_paginate @locations%>
 
-  <ul class="movies">
+  <ul class="list-group">
     <% @locations.each do |location| %>
-        <li>
-          <p><%= link_to location.name, location %> (<%= location.movies.count %> movies)</p>
+        <li class="list-group-item">
+          <p><%= link_to location.name, location %> - <span class="badge"><%= location.movies.count %></span> movies</p>
         </li>
     <% end %>
   </ul>

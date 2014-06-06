@@ -6,15 +6,25 @@
 </div>
 <div class="movie_head">
   <h1><%= @location.name %></h1>
-  <div id="movies_list">
 
+  <div id="movies_list">
+    <p class="small_title">Movies conected with this location</p>
+    <% @movies.each do |movie|%>
+        <ul style="list-style-type: none">
+          <li><%= location_image_of movie, 80 %><%= link_to "#{movie.title} - (#{movie.year})", movie %></li>
+        </ul>
+    <% end %>
+    <%= will_paginate @movies%>
   </div>
+
   <div id="location_images"></div>
+
 </div>
 
 <div id="map"></div>
 
 <script type="text/javascript">
-    showmap(<%=raw @hash.to_json %>);
+    showmap(<%=raw @hash.to_json %>,2);
     showhide();
+    displayImages(<%=raw @location.to_json %>,2);
 </script>
