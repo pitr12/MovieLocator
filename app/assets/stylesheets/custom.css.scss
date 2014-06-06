@@ -132,10 +132,8 @@ footer ul li {
 
 #map {
   width: 100%;
-  position: absolute;
-  min-height: 86%;
-  height: auto !important;
-  height: 86%;
+  position: relative;
+  height: 600px;
 }
 
 #map_home{
@@ -186,6 +184,20 @@ footer ul li {
   background-image: linear-gradient(to bottom, #111111, #222222);
   background-repeat: repeat-x;
   border-color: #111111;
+}
+
+#images_footer{
+  min-height: 200px;
+  background-color: #1b1b1b;
+  background-image: -moz-linear-gradient(top, #111111, #222222);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#111111), to(#222222));
+  background-image: -webkit-linear-gradient(top, #111111, #222222);
+  background-image: -o-linear-gradient(top, #111111, #222222);
+  background-image: linear-gradient(to bottom, #111111, #222222);
+  background-repeat: repeat-x;
+  border-color: #111111;
+  text-align: center;
+  padding-top: 3px;
 }
 
 .showhide_r{

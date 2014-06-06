@@ -26,7 +26,7 @@ function showmap(hash) {
             return ("<li><a>" + json.name + "<\/a></li>");
             };
 
-        function bindLiToMarker($li, marker){
+        function bindLiToMarker($li, marker, json){
             $li.click(function(){
                 handler.getMap().setZoom(14);
                 marker.setMap(handler.getMap()); //because clusterer removes map property from marker
@@ -35,6 +35,7 @@ function showmap(hash) {
                 $('html, body').animate({
                     scrollTop: $("#map").offset().top
                 }, 500);
+                displayImages(json.name);
         });
         };
 
@@ -42,7 +43,7 @@ function showmap(hash) {
             for (var i=0;i<raw_markers.length;i++){
             var $li = $( createSidebarLi(raw_markers[i]) );
             $li.appendTo($('#markers_list'));
-            bindLiToMarker($li, gmaps_markers[i]);
+            bindLiToMarker($li, gmaps_markers[i],raw_markers[i]);
             }
         };
 
@@ -55,4 +56,19 @@ function showmap(hash) {
                   createSidebar();
               });
           })
+}
+
+function showhide(){
+    $('#toggle').click(function(){
+        $('.movie_head').toggle();
+    });
+
+    $('#totop').click(function(){
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+}
+
+function displayImages(name){
+    document.getElementById('images_footer').innerHTML = '<iframe src="http://www.panoramio.com/wapi/template/list.html?tag='+ name +'&amp;width='+ $(document).width() +'&amp;height=200&amp;rows=1&amp;columns=8&amp;orientation=horizontal&amp;bgcolor=transparent" frameborder="0" width="'+ $(document).width() +'" height="200" scrolling="no" marginwidth="0" marginheight="0"> </iframe>'
 }
