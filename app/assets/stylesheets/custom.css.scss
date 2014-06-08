@@ -309,3 +309,25 @@ footer ul li {
 #location_images{
   padding-top: 55px;
 }
+
+/*radio buttons*/
+#radio_buttons{
+  float: left;
+  clear: none;
+  margin-left: 350px;
+  margin-top: -10px;
+}
+
+.r_label{
+  float:left;
+  clear:none;
+  padding: 2px 3em 0 8px;
+  color: #afafaf;
+  font-weight: bold;
+}
+
+.r_button{
+  float:left;
+  clear:none;
+  margin: 2px 0 0 2px;
+}
