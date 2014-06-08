@@ -11,31 +11,57 @@
         </ul>
       </nav>
 
-      <%= form_tag movies_path, class: "form-inline", method: :get do %>
-          <div class="input-group input-group-lg" >
-            <%= text_field_tag :query, params[:query], class: "form-control", id: "movie_search", autocomplete: "off" %>
-          </div>
-            <div class="input-group-btn">
-              <%= submit_tag "Search", class: "btn btn-primary", id: "srchbtn"%>
-            </div>
-          <% if params[:query].present? %>
-              <div class="input-group-btn">
-                <%= link_to "clear", movies_path, class: "btn btn-default" %>
+      <%= form_tag movies_path, id: "form_tag" ,class: "form-inline", method: :get do %>
+              <div class="input-group input-group-lg" >
+                <%= text_field_tag :query, params[:query], class: "form-control", id: "movie_search", autocomplete: "off" %>
               </div>
-          <% end %>
-      <% end %>
-
-      <script type="text/javascript">
-          autocomplete();
-          redirect_search();
-      </script>
+                <div class="input-group-btn">
+                  <%= submit_tag "Search", class: "btn btn-primary", id: "srchbtn"%>
+                </div>
+       <% end %>
 
     </div>
     <div id="radio_buttons">
-      <input class="r_button" id="category_movies" name="category" type="radio" value="movies" />
+      <input class="r_button" checked="true" id="category_movies" name="category" type="radio" value="movies" />
       <label class="r_label" for="category_movies">Movies</label>
-      <input class="r_button" id="category_locations" name="category" type="radio" value="locations" />
+      <input class="r_button" checked="false" id="category_locations" name="category" type="radio" value="locations" />
       <label class="r_label" for="category_locations">Locations</label>
     </div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $("#category_movies").prop('checked', true);
+          $("#category_locations").prop('checked', false);
+          autocomplete("movies");
+      });
+        $("#category_movies").click(function() {
+            $('#movie_search').typeahead('destroy');
+            window.redirect_autocomplete_click = function() {
+                $.get("/can_redirect?query=" + $('#movie_search').val(), function(data) {
+                    var obj = jQuery.parseJSON(data);
+                    if (obj.response) window.location = obj.url
+                    else{
+                      window.location = "/movies?utf8=✓&query=" + $('#movie_search').val() + "&commit=Search";
+                    }
+                });
+             };
+              autocomplete("movies");
+            document.getElementById('form_tag').setAttribute("action","/movies");
+        });
+        $("#category_locations").click(function() {
+            $('#movie_search').typeahead('destroy');
+            window.redirect_autocomplete_click = function() {
+                $.get("/can_redirect?query=" + $('#movie_search').val(), function(data) {
+                    var obj = jQuery.parseJSON(data);
+                    if (obj.response) window.location = obj.url
+                    else{
+                        window.location = "/locations?utf8=✓&query=" + $('#movie_search').val() + "&commit=Search";
+                    }
+                });
+            };
+            autocomplete("locations");
+            document.getElementById('form_tag').setAttribute("action","/locations");
+        });
+    </script>
   </div>
 </header>
