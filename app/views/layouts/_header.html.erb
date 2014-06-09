@@ -18,9 +18,9 @@
                 <div class="input-group-btn">
                   <%= submit_tag "Search", class: "btn btn-primary", id: "srchbtn"%>
                 </div>
-       <% end %>
-
+      <% end %>
     </div>
+
     <div id="radio_buttons">
       <input class="r_button" checked="true" id="category_movies" name="category" type="radio" value="movies" />
       <label class="r_label" for="category_movies">Movies</label>
@@ -29,39 +29,8 @@
     </div>
 
     <script type="text/javascript">
-      $(document).ready(function() {
-          $("#category_movies").prop('checked', true);
-          $("#category_locations").prop('checked', false);
-          autocomplete("movies");
-      });
-        $("#category_movies").click(function() {
-            $('#movie_search').typeahead('destroy');
-            window.redirect_autocomplete_click = function() {
-                $.get("/can_redirect?query=" + $('#movie_search').val(), function(data) {
-                    var obj = jQuery.parseJSON(data);
-                    if (obj.response) window.location = obj.url
-                    else{
-                      window.location = "/movies?utf8=✓&query=" + $('#movie_search').val() + "&commit=Search";
-                    }
-                });
-             };
-              autocomplete("movies");
-            document.getElementById('form_tag').setAttribute("action","/movies");
-        });
-        $("#category_locations").click(function() {
-            $('#movie_search').typeahead('destroy');
-            window.redirect_autocomplete_click = function() {
-                $.get("/can_redirect?query=" + $('#movie_search').val(), function(data) {
-                    var obj = jQuery.parseJSON(data);
-                    if (obj.response) window.location = obj.url
-                    else{
-                        window.location = "/locations?utf8=✓&query=" + $('#movie_search').val() + "&commit=Search";
-                    }
-                });
-            };
-            autocomplete("locations");
-            document.getElementById('form_tag').setAttribute("action","/locations");
-        });
+      searchInitialize();
+      chooseAutocompleteSource();
     </script>
   </div>
 </header>

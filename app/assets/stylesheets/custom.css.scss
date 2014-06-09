@@ -146,6 +146,7 @@ footer ul li {
   width: 100%;
   position: relative;
   height: 600px;
+  margin-top: 47px;
 }
 
 #map_home{
@@ -154,7 +155,7 @@ footer ul li {
   min-height: 88%;
   height: auto !important;
   height: 88%;
-  margin-top: 11px;
+  margin-top: 28px;
 }
 
 #map_home label {
@@ -168,7 +169,7 @@ footer ul li {
 .movie_head{
   min-height: 235px;
   padding-top: 35px;
-  padding-bottom: 5px;
+  margin-bottom: -47px;
   padding-left: 20px;
   @include bck_gradient();
   overflow:hidden;
