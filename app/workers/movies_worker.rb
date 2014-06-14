@@ -59,7 +59,6 @@ class MoviesWorker
             else
               location = Location.new(name: name, description: descr )
               if(location.save)
-                sleep 5
                 movie.localizations.create(location: location)
               end
             end

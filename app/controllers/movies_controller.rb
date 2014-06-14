@@ -11,13 +11,6 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @locations = @movie.locations
-    @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
-      marker.lat location.latitude
-      marker.lng location.longitude
-      marker.infowindow location.description
-      marker.title location.name
-      marker.json({ name: location.name })
-    end
   end
 
   def autocomplete
@@ -39,6 +32,11 @@ class MoviesController < ApplicationController
 
       end
     end
+  end
+
+  def update_data
+    @location = Location.find(params[:id])
+    @location.update_attributes(:latitude => params[:lat], :longitude => params[:lon])
   end
 
 end

@@ -80,3 +80,17 @@ function displayImages(name, id){
     document.getElementById('location_images').innerHTML = '<iframe src="http://www.panoramio.com/wapi/template/list.html?tag='+ name.name +'&amp;width='+ Math.ceil(($(document).width())*0.65) +'&amp;height=200&amp;rows=1&amp;columns=8&amp;orientation=horizontal&amp;bgcolor=transparent" frameborder="0" width="'+ Math.ceil(($(document).width())*0.65) +'" height="200" scrolling="no" marginwidth="0" marginheight="0"> </iframe>'
     }
 }
+
+function geocode(location){
+    var address = location.name;
+
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+            $.get( "/update_data?id=" +location.id+ "&lat=" +latitude+ "&lon=" +longitude , function( data ) {
+            });
+        }
+    });
+};
