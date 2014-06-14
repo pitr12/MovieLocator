@@ -1,11 +1,11 @@
-<% provide(:title, "#{@location.name}" )%>
+<% provide(:title, "#{@locations.name}" )%>
 
 <div id="showhide">
   <div class="showhide_l"><a id="totop">Go to Top</a></div>
   <div class="showhide_r"><a id="toggle">Show/hide location info</a></div>
 </div>
 <div class="movie_head">
-  <h1><%= @location.name %></h1>
+  <h1><%= @locations.name %></h1>
 
   <div id="movies_list">
     <p class="small_title">Movies conected with this location</p>
@@ -21,10 +21,19 @@
 
 </div>
 
+<%= render 'layouts/marker' %>
+
 <div id="map"></div>
 
 <script type="text/javascript">
     showmap(<%=raw @hash.to_json %>,2);
     showhide();
-    displayImages(<%=raw @location.to_json %>,2);
+    displayImages(<%=raw @locations.to_json %>,2);
+    $(window).load(function() {
+        var boolean = <%= @refresh %>;
+        if(boolean){
+            <% @refresh = false; %>
+            location.reload();
+        }
+    });
 </script>

@@ -8,15 +8,8 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @location = Location.find(params[:id])
-    @movies = @location.movies.paginate(page: params[:page], :per_page => 5).order('title ASC')
-    @hash = Gmaps4rails.build_markers(@location) do |location, marker|
-      marker.lat location.latitude
-      marker.lng location.longitude
-      marker.infowindow location.description
-      marker.title location.name
-      marker.json({ name: location.name })
-    end
+    @locations = Location.find(params[:id])
+    @movies = @locations.movies.paginate(page: params[:page], :per_page => 5).order('title ASC')
   end
 
   def autocomplete

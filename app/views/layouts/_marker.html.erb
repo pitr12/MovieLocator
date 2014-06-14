@@ -1,0 +1,23 @@
+<%
+   @refresh = false;
+   @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
+     @latitude = location.latitude
+     @longtitude = location.longitude
+     if (@latitude.nil?)
+       @refresh = true; %>
+        <script type="text/javascript">
+            geocode(<%=raw location.to_json %>);
+        </script>
+        <%
+           loc = Location.find(location.id)
+           @latitude = loc.latitude
+           @longtitude = loc.longitude
+        %>
+    <% end
+       marker.lat @latitude
+       marker.lng @longtitude
+       marker.infowindow location.description
+       marker.title location.name
+       marker.json({ name: location.name })
+       end
+%>
