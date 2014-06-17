@@ -54,6 +54,7 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'thin'
 end
 
 gem 'bootstrap-sass', '2.3.2.0'
@@ -67,3 +68,4 @@ gem 'gmaps4rails'
 gem 'searchkick'
 gem 'twitter-typeahead-rails'
 gem 'hogan_assets'
+gem 'heroku'

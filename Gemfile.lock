@@ -25,6 +25,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    addressable (2.3.6)
     arel (4.0.2)
     bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
@@ -49,6 +50,7 @@ GEM
       execjs
     coffee-script-source (1.7.0)
     connection_pool (2.0.0)
+    daemons (1.1.9)
     diff-lcs (1.2.5)
     elasticsearch (0.4.11)
       elasticsearch-api (= 0.4.11)
@@ -59,13 +61,25 @@ GEM
       faraday
       multi_json
     erubis (2.7.0)
+    eventmachine (1.0.3-x86-mingw32)
+    excon (0.37.0)
     execjs (2.0.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    ffi (1.9.3)
     ffi (1.9.3-x86-mingw32)
     geocoder (1.1.9)
     gmaps4rails (2.1.2)
     hashie (3.0.0)
+    heroku (3.8.3)
+      heroku-api (~> 0.3.17)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.18)
+      excon (~> 0.27)
+      multi_json (~> 1.8)
     hike (1.2.3)
     hogan_assets (1.6.0)
       execjs (>= 1.2.9)
@@ -79,6 +93,8 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    launchy (2.4.2)
+      addressable (~> 2.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -87,8 +103,12 @@ GEM
     minitest (4.7.5)
     multi_json (1.9.2)
     multipart-post (2.0.0)
+    netrc (0.7.7)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     nokogiri (1.6.1-x86-mingw32)
       mini_portile (~> 0.5.0)
+    pg (0.17.1)
     pg (0.17.1-x86-mingw32)
     polyglot (0.3.4)
     rack (1.5.2)
@@ -120,6 +140,8 @@ GEM
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -174,6 +196,10 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     temple (0.6.7)
+    thin (1.6.2)
+      daemons (>= 1.0.9)
+      eventmachine (>= 1.0.0)
+      rack (>= 1.0.0)
     thor (0.19.1)
     thread_safe (0.3.3)
     tilt (1.4.1)
@@ -204,6 +230,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   geocoder
   gmaps4rails
+  heroku
   hogan_assets
   jbuilder (~> 1.2)
   jquery-rails
@@ -218,6 +245,7 @@ DEPENDENCIES
   sidekiq
   sinatra
   slim
+  thin
   twitter-typeahead-rails
   uglifier (>= 1.3.0)
   will_paginate (= 3.0.4)
